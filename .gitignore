@@ -1,29 +1,84 @@
-*~
+# Could just force-add these files and leave this as '*', but this way I have a
+# nice explicit list for documentation's sake.
 
-# KDE directory preferences
-.directory
+# Ignore everything by default.
+*
 
-# Linux trash folder which might appear on any partition or disk
-.Trash-*
+# Bash stuff (profile just sources bashrc, since it's the only thing sourced
+# when a shell is a login shell).
+!.bash*
+.*.swp
+.bash_history
+.bash_local
+.bash_logout
+!.profile
 
-[._]*.s[a-w][a-z]
-[._]s[a-w][a-z]
-*.un~
-Session.vim
-.netrwhist
-*~
+# Zsh
+!.zshrc
+!.zsh
+!.zsh/*
+!.zsh/contrib
+!.zsh/contrib/*
+# Do ignore the data directory (my construct, it's where completion cache,
+# history etc live)
+.zsh/data
+.zsh/data/*
+# Do ignore local/sensitive settings
+.zsh/local
+.zsh/pre-local
+# Swapfiles (sigh)
+.zsh/*.swp
 
-.extra
-.gitconfig
-.gnupg
-!.gnupg/gpg*.conf
-.i3/logfile
-.irssi/away.log
-.irssi/config*
-.irssi/nicknames_whitelist
-.irssi/otr
-.irssi/saved_colors
-.irssi/scripts/autorun/blocker.pl
-.irssi/startup
-.rainbow_oauth
-.nginx/conf.d/*
+# Git aliases, identification info
+!.gitconfig
+# The gitignore of this repository itself (!)
+!.gitignore
+# My global Git excludes file (acts as a global .gitignore)
+!.gitexcludes
+
+
+# Vim plugins, ftplugins, syntax etc etc
+!.vim
+!.vim/*
+!.vim/*/*
+!.vim/*/*/*
+!.vim/*/*/*/*
+!.vim/*/*/*/*/*
+!.vim/*/*/*/*/*/*
+# Do ignore netrw history
+.vim/.netrwhist
+# Do ignore vim-plug stuff, sigh
+.vim/plugged
+# Vim settings
+!.vimrc
+# Ignore swapfiles
+.vim/.*.swp
+.vim/*/.*.swp
+.vim/*/*/.*.swp
+.vim/*/*/*/.*.swp
+
+# Local copies of tools/scripts
+!bin
+!bin/*
+bin/.*.swp
+# Concourse CLI; changes depending on target version
+bin/fly
+
+# Config for local daemons (e.g. squid)
+!etc
+!etc/*
+etc/clusto*.conf
+
+# Screen, tmux
+!.screenrc
+!.tmux.conf
+!.tmux
+!.tmux/*.yml
+
+# Gem config
+!.gemrc
+
+# Mutt
+!.muttrc
+!.mutt
+!.mutt/*
