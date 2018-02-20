@@ -9,6 +9,9 @@
 !bin/*
 !scripts
 !scripts/*
+!.fonts
+!.fonts/*
+!.fonts/*/*
 
 #Makefile
 !Makefile
