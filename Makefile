@@ -21,9 +21,9 @@ dotfiles: ## Installs the dotfiles.
 	#gpg --list-keys || true;
 	#ln -sfn $(CURDIR)/.gnupg/gpg.conf $(HOME)/.gnupg/gpg.conf;
 	#ln -sfn $(CURDIR)/.gnupg/gpg-agent.conf $(HOME)/.gnupg/gpg-agent.conf;
-	ln -sfn $CURDIR)/.oh-my-zsh/themes/domokost.zsh-theme $(HOME)/.oh-my-zsh/themes/domokost.zsh-theme
-	ln -fn $(CURDIR)/gitignore $(HOME)/.gitignore;
-	git update-index --skip-worktree $(CURDIR)/.gitconfig;
+	ln -sfn $(CURDIR)/.oh-my-zsh/themes/domokost.zsh-theme $(HOME)/.oh-my-zsh/themes/domokost.zsh-theme
+	#ln -fn $(CURDIR)/gitignore $(HOME)/.gitignore;
+	#git update-index --skip-worktree $(CURDIR)/.gitconfig;
 	#ln -snf $(CURDIR)/.i3 $(HOME)/.config/sway;
-	ln -snf $(CURDIR)/.fonts $(HOME)/.local/share/fonts;
+	#ln -snf $(CURDIR)/.fonts $(HOME)/.local/share/fonts;
 
