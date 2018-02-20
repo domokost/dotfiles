@@ -223,7 +223,7 @@ get_dotfiles() {
 	cd "$HOME"
 
 	# install dotfiles from repo
-	git clone git@github.com:domokost/dotfiles.git "${HOME}/dotfiles"
+	git clone git@github.com:domokost/dotfileh-agent -s`git "${HOME}/dotfiles"
 	cd "${HOME}/dotfiles"
 
 	# installs all the things
