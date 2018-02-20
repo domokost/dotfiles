@@ -7,7 +7,7 @@
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-ZSH_THEME="cobalt2"
+ZSH_THEME="domokost"
 
 # Set list of themes to load
 # Setting this variable when ZSH_THEME=random
@@ -60,7 +60,9 @@ ZSH_THEME="cobalt2"
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
   git
-#  zsh-autosuggestions
+  zsh-autosuggestions
+  zsh-completions
+  zsh-syntax-highlighting
 )
 
 source $ZSH/oh-my-zsh.sh
