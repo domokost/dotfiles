@@ -28,12 +28,6 @@ git config --global user.email "$GIT_AUTHOR_EMAIL"
 GH_USER="nickname"
 git config --global github.user "$GH_USER"
 
-###
-### Gmail credentials for mutt
-###
-export GMAIL=email@you.com
-export GMAIL_NAME="Your Name"
-export GMAIL_FROM=from-email@you.com
 ```
 
 #### `.vim`

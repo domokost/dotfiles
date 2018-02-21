@@ -200,7 +200,7 @@ install_scripts() {
 	git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ~/.zsh/zsh-syntax-highlighting
 
 	compaudit | xargs chown -R "$(whoami)"
-	compaudit | xargs chmod go-w
+	compaudit | xargs chmod g-w
 
 	# vimrc vundle install
 	#git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
@@ -223,7 +223,7 @@ get_dotfiles() {
 	cd "$HOME"
 
 	# install dotfiles from repo
-	git clone git@github.com:domokost/dotfiles.git "${HOME}/dotfiles"
+	#git clone git@github.com:domokost/dotfiles.git "${HOME}/dotfiles"
 	cd "${HOME}/dotfiles"
 
 	# installs all the things
