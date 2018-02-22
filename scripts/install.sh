@@ -169,15 +169,6 @@ setup_sudo() {
 
 # install custom scripts/binaries
 install_scripts() {
-	# install speedtest
-	curl -sSL https://raw.githubusercontent.com/sivel/speedtest-cli/master/speedtest.py  > /usr/local/bin/speedtest
-	chmod +x /usr/local/bin/speedtest
-
-	# install icdiff
-	curl -sSL https://raw.githubusercontent.com/jeffkaufman/icdiff/master/icdiff > /usr/local/bin/icdiff
-	curl -sSL https://raw.githubusercontent.com/jeffkaufman/icdiff/master/git-icdiff > /usr/local/bin/git-icdiff
-	chmod +x /usr/local/bin/icdiff
-	chmod +x /usr/local/bin/git-icdiff
 
 	#git completion
 	GIT_VERSION=`git --version | awk '{print $3}'`
@@ -193,6 +184,11 @@ install_scripts() {
 	# oh-my-zsh install
 	sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 	chsh -s $(which zsh)
+	zsh
+
+
+	# theme
+	git clone https://github.com/bhilburn/powerlevel9k.git ~/.oh-my-zsh/custom/themes/powerlevel9k
 
 	# oh-my-zsh plugin install
 	git clone https://github.com/zsh-users/zsh-completions ~/.oh-my-zsh/custom/plugins/zsh-completions
@@ -203,18 +199,14 @@ install_scripts() {
 	compaudit | xargs chmod g-w
 
 	# vimrc vundle install
-	#git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+	git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 
 	# Pathogen install
-	#mkdir -p ~/.vim/autoload ~/.vim/bundle && \
-	#curl -LSso ~/.vim/autoload/pathogen.vim https://tpo.pe/pathogen.vim
+	mkdir -p ~/.vim/autoload ~/.vim/bundle && \
+	curl -LSso ~/.vim/autoload/pathogen.vim https://tpo.pe/pathogen.vim
 
 	# Nerdtree for vim install
-	#git clone https://github.com/scrooloose/nerdtree.git ~/.vim/bundle/nerdtree
-
-	# Vim color scheme install
-	#git clone https://github.com/sheerun/vim-wombat-scheme.git ~/.vim/colors/wombat
-	#mv ~/.vim/colors/wombat/colors/* ~/.vim/colors/
+	git clone https://github.com/scrooloose/nerdtree.git ~/.vim/bundle/nerdtree
 }
 
 get_dotfiles() {
@@ -241,6 +233,8 @@ install_vim() {
 	# create subshell
 	(
 	cd "$HOME"
+
+	sudo apt install neovim -y
 
 	# install .vim files
 	git clone --recursive git@github.com:jessfraz/.vim.git "${HOME}/.vim"
