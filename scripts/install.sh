@@ -46,23 +46,12 @@ setup_sources_min() {
 		lsb-release \
 		--no-install-recommends
 
-	# hack for latest git (don't judge)
-	cat <<-EOF > /etc/apt/sources.list.d/git-core.list
-	deb http://ppa.launchpad.net/git-core/ppa/ubuntu xenial main
-	deb-src http://ppa.launchpad.net/git-core/ppa/ubuntu xenial main
-	EOF
 
 	# neovim
 	cat <<-EOF > /etc/apt/sources.list.d/neovim.list
 	deb http://ppa.launchpad.net/neovim-ppa/unstable/ubuntu xenial main
 	deb-src http://ppa.launchpad.net/neovim-ppa/unstable/ubuntu xenial main
 	EOF
-
-	# add the git-core ppa gpg key
-	apt-key adv --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys E1DD270288B4E6030699E45FA1715D88E1DF1F24
-
-	# add the neovim ppa gpg key
-	apt-key adv --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys 9DBB0BE9366964F134855E2255F96FCF8231B6DD
 
 	# turn off translations, speed up apt update
 	mkdir -p /etc/apt/apt.conf.d
@@ -117,10 +106,9 @@ base_min() {
 		tzdata \
 		usbmuxd \
 		unzip \
-		xclip \
-		xcompmgr \
 		xz-utils \
 		zip \
+		zsh \
 		--no-install-recommends
 
 	apt autoremove
@@ -178,14 +166,9 @@ install_scripts() {
 	  echo "ERROR: Couldn't download completion script. Make sure you have a working internet connection." && exit 1
 	fi
 
-	#zsh
-	sudo apt-get install -y zsh
-
 	# oh-my-zsh install
 	sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 	chsh -s $(which zsh)
-	zsh
-
 
 	# theme
 	git clone https://github.com/bhilburn/powerlevel9k.git ~/.oh-my-zsh/custom/themes/powerlevel9k
@@ -195,8 +178,8 @@ install_scripts() {
 	git clone git://github.com/zsh-users/zsh-autosuggestions ~/.zsh/zsh-autosuggestions
 	git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ~/.zsh/zsh-syntax-highlighting
 
-	compaudit | xargs chown -R "$(whoami)"
-	compaudit | xargs chmod g-w
+	zsh compaudit | xargs chown -R "$(whoami)"
+	zsh compaudit | xargs chmod g-w
 
 	# vimrc vundle install
 	git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
@@ -226,7 +209,7 @@ get_dotfiles() {
 
 	)
 
-	install_vim;
+	#install_vim;
 }
 
 install_vim() {
