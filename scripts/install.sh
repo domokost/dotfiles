@@ -46,13 +46,6 @@ setup_sources_min() {
 		lsb-release \
 		--no-install-recommends
 
-
-	# neovim
-	cat <<-EOF > /etc/apt/sources.list.d/neovim.list
-	deb http://ppa.launchpad.net/neovim-ppa/unstable/ubuntu xenial main
-	deb-src http://ppa.launchpad.net/neovim-ppa/unstable/ubuntu xenial main
-	EOF
-
 	# turn off translations, speed up apt update
 	mkdir -p /etc/apt/apt.conf.d
 	echo 'Acquire::Languages "none";' > /etc/apt/apt.conf.d/99translations
@@ -93,7 +86,6 @@ base_min() {
 		make \
 		mount \
 		net-tools \
-		neovim \
 		pinentry-curses \
 		rxvt-unicode-256color \
 		scdaemon \
@@ -130,11 +122,12 @@ base() {
 	apt update
 	apt -y upgrade
 
-	apt install -y \
-		azure-cli \
-		google-cloud-sdk \
-		--no-install-recommends
-
+	./install-nodejs-npm-on-wsl.sh
+	./install-docker-on-wsl.sh
+	./install-kubectl-on-wsl.sh
+#	./install-neovim-on-wsl.sh
+	./install-dotnet-core-on-wsl.sh
+	
 	# install tlp with recommends
 	# apt install -y tlp tlp-rdw
 
@@ -216,8 +209,6 @@ install_vim() {
 	# create subshell
 	(
 	cd "$HOME"
-
-	sudo apt install neovim -y
 
 	# install .vim files
 	git clone --recursive git@github.com:jessfraz/.vim.git "${HOME}/.vim"

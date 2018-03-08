@@ -124,6 +124,5 @@ fi
 export DOCKER_HOST=tcp://0.0.0.0:2375
 export DISPLAY=:0.0
 
-if [ -t 1 ]; then
-exec zsh
-fi
+export DOCKER_HOST=tcp://0.0.0.0:2375
+sudo mount --bind /mnt/c /c
