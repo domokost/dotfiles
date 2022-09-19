@@ -34,7 +34,7 @@ else
     VER=$(uname -r)
 fi
 
-if command -v git &> /dev/null
+if command -v sudo &> /dev/null
 then
     SUDO=sudo 
 fi
