@@ -60,6 +60,10 @@ fi
 
 REPO=https://github.com/domokost/dotfiles.git
 
+function dotfile {
+    /usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME $@
+}
+
 alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 
 echo ".dotfiles" >> .gitignore
