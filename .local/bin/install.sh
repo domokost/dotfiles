@@ -102,7 +102,7 @@ echo ".dotfiles" >> .gitignore
 git clone --bare $REPO $HOME/.dotfiles
 
 mkdir -p .dotfiles-backup && \
-    dotfiles checkout 2>&1 | grep -E "\s+\." | awk {'print $1'} | \
+    dotfiles checkout 2>&1 | grep -E "\s+\." | awk '{print $1}' | \
     xargs -I{} mv {} .dotfiles-backup/{}
 
 dotfiles checkout
