@@ -9,6 +9,8 @@ set -o errexit
 set -o nounset 
 set -o pipefail
 
+cd $HOME
+
 # install.sh
 #	Description: Installs the dotfiles based on OS.
 
