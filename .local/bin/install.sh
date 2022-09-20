@@ -66,9 +66,9 @@ echo ".dotfiles" >> .gitignore
 
 git clone --bare $REPO $HOME/.dotfiles
 
-mkdir -p .dotfiles-backup && \
+mkdir -p $HOME/.dotfiles-backup && \
     dotfiles checkout 2>&1 | grep -E "\s+\." | awk '{print $1}' | \
-    xargs -I{} mv {} .dotfiles-backup/{}
+    xargs -I{} mv {} $HOME/.dotfiles-backup/{}
 
 dotfiles checkout
 dotfiles config status.showUntrackedFiles no
