@@ -32,10 +32,8 @@ elif [ -f /etc/debian_version ]; then
     VER=$(cat /etc/debian_version)
 elif [ -f /etc/SuSe-release ]; then
     # Older SuSE/etc.
-    ...
 elif [ -f /etc/redhat-release ]; then
     # Older Red Hat, CentOS, etc.
-    ...
 else
     # Fall back to uname, e.g. "Linux <version>", also works for BSD, etc.
     OS=$(uname -s)
