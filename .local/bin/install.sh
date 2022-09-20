@@ -36,37 +36,6 @@ else
     VER=$(uname -r)
 fi
 
-# Bits
-case $(uname -m) in
-x86_64)
-    BITS=64
-    ;;
-i*86)
-    BITS=32
-    ;;
-*)
-    BITS=?
-    ;;
-esac
-
-# CPU architecture
-case $(uname -m) in
-x86_64)
-    ARCH=x64  # or AMD64 or Intel64 or whatever
-    ;;
-i*86)
-    ARCH=x86  # or IA32 or Intel32 or whatever
-    ;;
-*)
-    # leave ARCH as-is
-    ;;
-esac
-
-if command -v sudo &> /dev/null
-then
-    SUDO=sudo
-fi
-
 if ! command -v git &> /dev/null
 then
    echo "Installing git"
