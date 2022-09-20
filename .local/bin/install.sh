@@ -1,5 +1,10 @@
 #!/bin/bash
 
+if [ "$EUID" -ne 0 ]; then
+    echo "Please run as root, or with sudo."
+	exit
+fi
+
 set -e
 set -o pipefail
 
@@ -72,29 +77,35 @@ if ! command -v git &> /dev/null
 then
    echo "Installing git"
    case $OS in
-   Ubuntu*)
-       $SUDO apt update
-       $SUDO apt install git -y
+   Ubuntu)
+       apt update
+       apt install git -y
        ;;
    Debian*)
-       $SUDO apt update
-       $SUDO apt install git -y
+       apt update
+       apt install git -y
        ;;
    Fedora*)
-       $SUDO dnf check-update
-       $SUDO dnf install git -y
+       dnf check-update
+       dnf install git -y
        ;;
    Arch*)
-       $SUDO pacman -Syu git --noconfirm
+       pacman -Syu git --noconfirm
        ;;
    esac
 fi
+
 REPO=https://github.com/domokost/dotfiles.git
+
 alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
+
 echo ".dotfiles" >> .gitignore
+
 git clone --bare $REPO $HOME/.dotfiles
+
 mkdir -p .dotfiles-backup && \
-dotfiles checkout 2>&1 | grep -E "\s+\." | awk {'print $1'} | \
-xargs -I{} mv {} .dotfiles-backup/{}
+    dotfiles checkout 2>&1 | grep -E "\s+\." | awk {'print $1'} | \
+    xargs -I{} mv {} .dotfiles-backup/{}
+
 dotfiles checkout
 dotfiles config status.showUntrackedFiles no
