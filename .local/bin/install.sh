@@ -5,7 +5,8 @@ if [ "$EUID" -ne 0 ]; then
 	exit
 fi
 
-set -e
+set -o errexit 
+set -o nounset 
 set -o pipefail
 
 # install.sh
