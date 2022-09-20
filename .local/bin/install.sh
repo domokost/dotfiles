@@ -63,7 +63,7 @@ fi
 
 REPO=https://github.com/domokost/dotfiles.git
 
-function dotfile {
+function dotfiles {
     /usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME $@
 }
 
