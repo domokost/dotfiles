@@ -1,19 +1,14 @@
 #!/bin/bash
 
-if [ "$EUID" -ne 0 ]; then
-    echo "Please run as root, or with sudo."
-        exit
-fi
-
-set -o errexit
-set -o nounset
-
-export DEBIAN_FRONTEND=noninteractive
-
-cd "$HOME"
-
 # install.sh
 #       Description: Installs the dotfiles based on OS.
+
+if [ "$EUID" -ne 0 ]; then
+    echo "Please run as root, or with sudo."
+    exit
+fi
+
+cd "$HOME"
 
 #Source: https://unix.stackexchange.com/questions/6345/how-can-i-get-distribution-name-and-version-number-in-a-simple-shell-script
 if [ -f /etc/os-release ]; then
@@ -44,26 +39,27 @@ fi
 
 echo "$OS $VER"
 
-if ! command -v git &> /dev/null
-then
-   echo "Installing git"
-   case $OS in
-   Ubuntu)
-       apt update
-       apt install git -y
-       ;;
-   Debian*)
-       apt update
-       apt install git -y
-       ;;
-   Fedora*)
-       dnf check-update
-       dnf install git -y
-       ;;
-   Arch*)
-       pacman -Syu git --noconfirm
-       ;;
-   esac
+if ! command -v git &>/dev/null; then
+    echo "Installing git"
+    case $OS in
+    Ubuntu)
+        export DEBIAN_FRONTEND=noninteractive
+        apt update
+        apt install git -y
+        ;;
+    Debian*)
+        export DEBIAN_FRONTEND=noninteractive
+        apt update
+        apt install git -y
+        ;;
+    Fedora*)
+        dnf check-update
+        dnf install git -y
+        ;;
+    Arch*)
+        pacman -Syu git --noconfirm
+        ;;
+    esac
 fi
 
 REPO=https://github.com/domokost/dotfiles.git
@@ -72,12 +68,12 @@ function dotfiles {
     /usr/bin/git --git-dir="$HOME/.dotfiles/" --work-tree="$HOME" "$@"
 }
 
-echo ".dotfiles" >> .gitignore
+echo ".dotfiles" >>.gitignore
 
 git clone --bare "$REPO" "$HOME"/.dotfiles
 
-mkdir -p "$HOME"/.dotfiles-backup && \
-    dotfiles checkout 2>&1 | grep -E "\s+\." | awk '{print $1}' | \
+mkdir -p "$HOME"/.dotfiles-backup &&
+    dotfiles checkout 2>&1 | grep -E "\s+\." | awk '{print $1}' |
     xargs -I{} mv {} "$HOME"/.dotfiles-backup/{}
 
 dotfiles checkout
