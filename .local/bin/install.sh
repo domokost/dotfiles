@@ -81,4 +81,4 @@ mkdir -p "$USER_HOME"/.dotfiles-backup &&
 
 dotfiles checkout
 dotfiles config status.showUntrackedFiles no
-chown -R $SUDO_USER:$SUDO_USER .*
+chown -R "$SUDO_USER":"$SUDO_USER" "$USER_HOME"/.*
