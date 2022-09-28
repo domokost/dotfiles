@@ -5,10 +5,13 @@
 
 if [ "$EUID" -ne 0 ]; then
     echo "Please run as root, or with sudo."
+    USER_HOME=$HOME
     exit
+else
+    USER_HOME=$(eval echo ~"${SUDO_USER}")
 fi
 
-cd "$HOME"
+echo "$USER_HOME"
 
 #Source: https://unix.stackexchange.com/questions/6345/how-can-i-get-distribution-name-and-version-number-in-a-simple-shell-script
 if [ -f /etc/os-release ]; then
@@ -65,16 +68,17 @@ fi
 REPO=https://github.com/domokost/dotfiles.git
 
 function dotfiles {
-    /usr/bin/git --git-dir="$HOME/.dotfiles/" --work-tree="$HOME" "$@"
+    /usr/bin/git --git-dir="$USER_HOME/.dotfiles/" --work-tree="$USER_HOME" "$@"
 }
 
 echo ".dotfiles" >>.gitignore
 
-git clone --bare "$REPO" "$HOME"/.dotfiles
+git clone --bare "$REPO" "$USER_HOME"/.dotfiles
 
-mkdir -p "$HOME"/.dotfiles-backup &&
+mkdir -p "$USER_HOME"/.dotfiles-backup &&
     dotfiles checkout 2>&1 | grep -E "\s+\." | awk '{print $1}' |
-    xargs -I{} mv {} "$HOME"/.dotfiles-backup/{}
+    xargs -I{} mv {} "$USER_HOME"/.dotfiles-backup/{}
 
 dotfiles checkout
 dotfiles config status.showUntrackedFiles no
+chown -R $SUDO_USER:$SUDO_USER .*
