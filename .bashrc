@@ -123,3 +123,4 @@ if ! shopt -oq posix; then
 fi
 eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 eval "$(starship init bash)"
+eval $(keychain --eval --quiet --agents ssh ~/.ssh/ed25519)

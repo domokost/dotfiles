@@ -67,7 +67,7 @@ install() {
     export DEBIAN_FRONTEND=noninteractive
     ${sudo} apt update
     ${sudo} apt -y upgrade
-    ${sudo} apt install -y autoconf automake apt-transport-https bash-completion build-essential ca-certificates coreutils curl dnsutils findutils git gzip grep gnupg gnupg2 gnupg-agent grep gzip hostname less lsb-release make mount neovim net-tools ssh strace sudo tar tmux tree tzdata unzip vim xz-utils zip zsh
+    ${sudo} apt install -y autoconf automake apt-transport-https bash-completion build-essential ca-certificates coreutils curl dnsutils findutils git gzip grep gnupg gnupg2 gnupg-agent grep gzip hostname keychain less lsb-release make mount neovim net-tools ssh strace sudo tar tmux tree tzdata unzip vim xz-utils zip zsh
     ${sudo} apt autoremove
     ${sudo} apt autoclean
     ${sudo} apt clean
@@ -76,7 +76,7 @@ install() {
     export DEBIAN_FRONTEND=noninteractive
     ${sudo} apt update
     ${sudo} apt -y upgrade
-    ${sudo} apt install -y autoconf automake apt-transport-https bash-completion build-essential ca-certificates coreutils curl dnsutils findutils git gzip grep gnupg gnupg2 gnupg-agent grep gzip hostname less lsb-release make mount neovim net-tools ssh strace sudo tar tmux tree tzdata unzip vim xz-utils zip zsh
+    ${sudo} apt install -y autoconf automake apt-transport-https bash-completion build-essential ca-certificates coreutils curl dnsutils findutils git gzip grep gnupg gnupg2 gnupg-agent grep gzip hostname keychain less lsb-release make mount neovim net-tools ssh strace sudo tar tmux tree tzdata unzip vim xz-utils zip zsh
     ${sudo} apt autoremove
     ${sudo} apt autoclean
     ${sudo} apt clean
@@ -84,13 +84,13 @@ install() {
   Fedora*)
     ${sudo} dnf check-update
     ${sudo} dnf update -y
-    ${sudo} dnf install -y autoconf automake apt-transport-https bash-completion build-essential ca-certificates coreutils curl dnsutils findutils git gzip grep gnupg gnupg2 gnupg-agent grep gzip hostname less lsb-release make mount neovim net-tools ssh strace sudo tar tmux tree tzdata unzip vim xz-utils zip zsh
+    ${sudo} dnf install -y autoconf automake apt-transport-https bash-completion build-essential ca-certificates coreutils curl dnsutils findutils git gzip grep gnupg gnupg2 gnupg-agent grep gzip hostname keychain less lsb-release make mount neovim net-tools ssh strace sudo tar tmux tree tzdata unzip vim xz-utils zip zsh
     ;;
   Arch*)
     ${sudo} pacman-key --init
     ${sudo} pacman-key --populate
     ${sudo} pacman -S archlinux-keyring
-    ${sudo} pacman -Syu --noconfirm autoconf automake bash-completion ca-certificates coreutils curl dnsutils findutils git gzip grep gnupg grep gzip less lsb-release make neovim net-tools openssh strace sudo tar tmux tree tzdata unzip vim xz zip zsh
+    ${sudo} pacman -Syu --noconfirm autoconf automake bash-completion ca-certificates coreutils curl dnsutils findutils git gzip grep gnupg grep gzip keychain less lsb-release make neovim net-tools openssh strace sudo tar tmux tree tzdata unzip vim xz zip zsh
     ;;
   esac
   info "Installing brew..."
