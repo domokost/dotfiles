@@ -1,15 +1,15 @@
 format = """
-[](#0f172a)\
+[](#6b7089)\
 $directory\
 $git_branch\
 $git_status\
-[ ](#0f172a)\
+[ ](#6b7089)\
 """
 
 right_format =  """
-[](fg:#0f172a)\
-[$username@$hostname](bg:#0f172a fg:#1e293b)\
-[ ](fg:#0f172a)\
+[](fg:#1E2132)\
+[$username@$hostname](bg:#1E2132 fg:#6b7089)\
+[ ](fg:#1E2132)\
 """
 
 # Disable the blank line at the start of the prompt
@@ -18,12 +18,12 @@ right_format =  """
 # You can also replace your username with a neat symbol like  to save some space
 [username]
 show_always = true
-style_user = "bg:#0f172a fg:#1e293b"
-style_root = "bg:#BF616A"
+style_user = "fg:#6b7089 bg:#1E2132"
+style_root = "bg:#E27878"
 format = '[$user]($style)'
 
 [directory]
-style = "bg:#0f172a"
+style = "bg:#6b7089 fg:#1E2132"
 format = "[$path]($style)"
 truncation_length = 3
 truncation_symbol = "…/"
@@ -41,18 +41,13 @@ truncation_symbol = "…/"
 # So either put "Important Documents" before "Documents" or use the substituted version:
 # "Important  " = "  "
 
-[docker_context]
-symbol = " "
-style = "bg:#06969A"
-format = '[ $symbol $context ]($style) $path'
-
 [git_branch]
 symbol = " "
-style = "bg:#0f172a fg:#a3e635"
+style = "bg:#6b7089 fg:#b4be82"
 format = '[ $symbol $branch ]($style)'
 
 [git_status]
-#style = "bg:#0f172a"
+#style = "bg:#6b7089"
 #format = '[$all_status$ahead_behind]($style)'
 conflicted = "=${count}"
 ahead = "⇡${count}"
@@ -64,28 +59,8 @@ modified = "!${count}"
 staged = "+${count}"
 renamed = "+${count}"
 deleted = "✘${count}"
-style = "bg:#0f172a fg:#facc15"
+style = "bg:#6b7089 fg:#e2a478"
 format = "[$all_status$ahead_behind]($style)"
-
-[golang]
-symbol = " "
-style = "bg:#86BBD8"
-format = '[ $symbol ($version) ]($style)'
-
-[java]
-symbol = " "
-style = "bg:#86BBD8"
-format = '[ $symbol ($version) ]($style)'
-
-[nodejs]
-symbol = ""
-style = "bg:#86BBD8"
-format = '[ $symbol ($version) ]($style)'
-
-[rust]
-symbol = ""
-style = "bg:#86BBD8"
-format = '[ $symbol ($version) ]($style)'
 
 [time]
 disabled = false
@@ -97,6 +72,6 @@ format = '[ ♥ $time ]($style)'
 ssh_only = false
 ssh_symbol = "🌐"
 format = "[$ssh_symbol$hostname]($style)"
-style = "bg:#0f172a fg:#1e293b"
+style = "bg:#1E2132 fg:#6b7089"
 trim_at = "."
 disabled = false
