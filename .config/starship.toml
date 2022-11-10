@@ -1,15 +1,16 @@
 format = """
-[](#6b7089)\
+[](#84a0c6)\
 $directory\
+[](bg:#6b7089 fg:#84a0c6)\
 $git_branch\
 $git_status\
-[ ](#6b7089)\
+[ ](#6b7089)\
 """
 
 right_format =  """
-[](fg:#1E2132)\
-[$username@$hostname](bg:#1E2132 fg:#6b7089)\
-[ ](fg:#1E2132)\
+[](fg:#2e313f bg:#161821)\
+[$username@$hostname](bg:#2e313f fg:#6b7089)\
+[](fg:#2e313f bg:#161821)\
 """
 
 # Disable the blank line at the start of the prompt
@@ -18,12 +19,12 @@ right_format =  """
 # You can also replace your username with a neat symbol like  to save some space
 [username]
 show_always = true
-style_user = "fg:#6b7089 bg:#1E2132"
+style_user = "bg:#2e313f fg:#6b7089"
 style_root = "bg:#E27878"
 format = '[$user]($style)'
 
 [directory]
-style = "bg:#6b7089 fg:#1E2132"
+style = "bg:#84a0c6 fg:#1E2132"
 format = "[$path]($style)"
 truncation_length = 3
 truncation_symbol = "…/"
@@ -42,7 +43,7 @@ truncation_symbol = "…/"
 # "Important  " = "  "
 
 [git_branch]
-symbol = " "
+symbol = ""
 style = "bg:#6b7089 fg:#b4be82"
 format = '[ $symbol $branch ]($style)'
 
@@ -60,7 +61,7 @@ staged = "+${count}"
 renamed = "+${count}"
 deleted = "✘${count}"
 style = "bg:#6b7089 fg:#e2a478"
-format = "[$all_status$ahead_behind]($style)"
+format = "[$all_status$ahead_behind ]($style)"
 
 [time]
 disabled = false
@@ -72,6 +73,6 @@ format = '[ ♥ $time ]($style)'
 ssh_only = false
 ssh_symbol = "🌐"
 format = "[$ssh_symbol$hostname]($style)"
-style = "bg:#1E2132 fg:#6b7089"
+style = "bg:#2e313f fg:#6b7089"
 trim_at = "."
 disabled = false
