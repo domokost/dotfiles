@@ -71,8 +71,8 @@ format = '[ ♥ $time ]($style)'
 
 [hostname]
 ssh_only = false
-ssh_symbol = ""
-format = "[$hostname $ssh_symbol ]($style)"
+ssh_symbol = "  "
+format = "[hostname$ssh_symbol]($style)"
 style = "bg:#2e313f fg:#6b7089"
 trim_at = "."
 disabled = false
