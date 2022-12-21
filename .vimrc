@@ -25,6 +25,7 @@ set laststatus=2
 set noshowmode
 
 set colorcolumn=80
+set clipboard=unnamedplus
 
 " Install vim-plug if not found
 if empty(glob('~/.vim/autoload/plug.vim'))

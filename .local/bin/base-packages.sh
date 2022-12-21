@@ -100,6 +100,9 @@ install() {
   eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
   info "Installing starship..."
   brew install starship
+
+  # install tmux tpm
+  git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 }
 
 install

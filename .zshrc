@@ -111,7 +111,7 @@ if [ -f ~/.aliases ]; then
   . ~/.aliases
 fi
 
-# Set PATH, MANPATH, etc., for Homebrew.                                                                                                                                                                                                                    
+# Set PATH, MANPATH, etc., for Homebrew.
 eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 
 eval "$(starship init zsh)"
