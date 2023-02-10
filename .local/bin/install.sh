@@ -10,9 +10,50 @@ if ! (return 0 2> /dev/null); then
 fi
 
 # Get helper functions
-source ~/.local/bin/helper-functions
 # Get OS and ARCH information
-source ~/.local/bin/os
+BOLD="$(tput bold 2>/dev/null || printf '')"
+GREY="$(tput setaf 0 2>/dev/null || printf '')"
+UNDERLINE="$(tput smul 2>/dev/null || printf '')"
+RED="$(tput setaf 1 2>/dev/null || printf '')"
+GREEN="$(tput setaf 2 2>/dev/null || printf '')"
+YELLOW="$(tput setaf 3 2>/dev/null || printf '')"
+BLUE="$(tput setaf 4 2>/dev/null || printf '')"
+MAGENTA="$(tput setaf 5 2>/dev/null || printf '')"
+NO_COLOR="$(tput sgr0 2>/dev/null || printf '')"
+
+info() {
+  printf '%s\n' "${BOLD}${GREY}>${NO_COLOR} $*"
+}
+
+warn() {
+  printf '%s\n' "${YELLOW}! $*${NO_COLOR}"
+}
+
+error() {
+  printf '%s\n' "${RED}x $*${NO_COLOR}" >&2
+}
+
+completed() {
+  printf '%s\n' "${GREEN}✓${NO_COLOR} $*"
+}
+
+has() {
+  command -v "$1" 1>/dev/null 2>&1
+}
+
+elevate_priv() {
+  if ! has sudo; then
+    error 'Could not find the command "sudo", needed to get permissions for install.'
+    info "If you are on Windows, please run your shell as an administrator, then"
+    info "rerun this script. Otherwise, please run this script as root, or install"
+    info "sudo."
+    exit 1
+    fi
+    if ! sudo -v; then
+      error "Superuser not granted, aborting installation"
+      exit 1
+    fi
+}
 
 check_priv() {
 
@@ -27,6 +68,62 @@ check_priv() {
   fi
   info "$msg"
 }
+
+if [ -f /etc/os-release ]; then
+    # freedesktop.org and systemd
+    . /etc/os-release
+    OS=$NAME
+    VER=$VERSION_ID
+elif type lsb_release >/dev/null 2>&1; then
+    # linuxbase.org
+    OS=$(lsb_release -si)
+    VER=$(lsb_release -sr)
+elif [ -f /etc/lsb-release ]; then
+    # For some versions of Debian/Ubuntu without lsb_release command
+    . /etc/lsb-release
+    OS=$DISTRIB_ID
+    VER=$DISTRIB_RELEASE
+elif [ -f /etc/debian_version ]; then
+    # Older Debian/Ubuntu/etc.
+    OS=Debian
+    VER=$(cat /etc/debian_version)
+elif [ -f /etc/SuSe-release ]; then
+    # Older SuSE/etc.
+    ...
+elif [ -f /etc/redhat-release ]; then
+    # Older Red Hat, CentOS, etc.
+    ...
+else
+    # Fall back to uname, e.g. "Linux <version>", also works for BSD, etc.
+    OS=$(uname -s)
+    VER=$(uname -r)
+fi
+
+# Bits
+case $(uname -m) in
+x86_64)
+    BITS=64
+    ;;
+i*86)
+    BITS=32
+    ;;
+*)
+    BITS=?
+    ;;
+esac
+
+# CPU architecture
+case $(uname -m) in
+x86_64)
+    ARCH=x64  # or AMD64 or Intel64 or whatever
+    ;;
+i*86)
+    ARCH=x86  # or IA32 or Intel32 or whatever
+    ;;
+*)
+    # leave ARCH as-is
+    ;;
+esac
 
 if [ "$EUID" -ne 0 ]; then
     USER_HOME=$HOME
