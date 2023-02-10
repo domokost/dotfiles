@@ -1,6 +1,22 @@
 #!/usr/bin/env bash
 
-set -eu
+usage () {
+    echo 'usage: install target
+    Supported targets are: base, nvim'
+}
+
+# Exit if no target is defined
+if [ "$#" -ne 1 ]; then
+    usage
+    exit 1
+fi
+
+# The "set -e" option instructs bash to immediately exit if any command has a
+# non-zero exit status. The "set -u" option causes the script to terminate when
+# a variable is referenced that is not previously defined. The "set -o pipefail"
+# instructs bash to use the return code of a failed command within a pipline as
+# the return code of the whole pipeline
+set -euo pipefail
 printf '\n'
 
 BOLD="$(tput bold 2>/dev/null || printf '')"
@@ -80,11 +96,6 @@ install() {
     ${sudo} apt autoremove
     ${sudo} apt autoclean
     ${sudo} apt clean
-    ;;
-  Fedora*)
-    ${sudo} dnf check-update
-    ${sudo} dnf update -y
-    ${sudo} dnf install -y autoconf automake apt-transport-https bash-completion build-essential ca-certificates coreutils curl dnsutils findutils git gzip grep gnupg gnupg2 gnupg-agent grep gzip hostname keychain less lsb-release make mount neovim net-tools ssh strace sudo tar tmux tree tzdata unzip vim xz-utils zip zsh
     ;;
   Arch*)
     ${sudo} pacman-key --init
