@@ -58,7 +58,7 @@ check_priv() {
 
   if ! [ "$EUID" -ne 0 ]; then
     sudo=""
-    warn "Running as root, please wait…"
+    warn "Running as root!"
   else
     warn "Escalated permissions are required to continue."
     elevate_priv
