@@ -131,25 +131,22 @@ else
     USER_HOME=$(eval echo ~"${SUDO_USER}")
 fi
 
-info "$OS $VER, $BITS bits and $ARCH."
-info "$USER_HOME"
-
 install_git() {
   if ! has git; then
     info "Installing git..."
     case $OS in
       Ubuntu)
         export DEBIAN_FRONTEND=noninteractive
-        {sudo} apt update
-        {sudo} apt install git -y
+        ${sudo} apt update
+        ${sudo} apt install git -y
         ;;
       Debian*)
         export DEBIAN_FRONTEND=noninteractive
-        {sudo} apt update
-        {sudo} apt install git -y
+        ${sudo} apt update
+        ${sudo} apt install git -y
         ;;
       Arch*)
-        {sudo} pacman -Syu git --noconfirm
+        ${sudo} pacman -Syu git --noconfirm
         ;;
     esac
   fi
