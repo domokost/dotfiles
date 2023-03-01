@@ -11,3 +11,6 @@ alias dcd='docker-compose down --remove-orphans'
 alias dcl='docker-compose logs -f --tail=50'
 alias dcr='docker-compose restart'
 alias dc='docker-compose'
+alias ykman="$HOME/Downloads/yubikey-manager-qt.AppImage ykman"
+alias ykman="$HOME/Downloads/yubikey-manager-qt.AppImage ykman"
+alias ykman="$HOME/Downloads/yubikey-manager-qt-1.2.4b-linux.AppImage ykman"
