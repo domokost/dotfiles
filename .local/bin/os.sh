@@ -1,6 +1,13 @@
-#!/bin/bash
-set -e
-set -o pipefail
+#!/usr/bin/env bash
+
+# Only enable these shell behaviours if we're not being sourced
+# Approach via: https://stackoverflow.com/a/28776166/8787985
+if ! (return 0 2> /dev/null); then
+    # A better class of script...
+    set -o errexit      # Exit on most errors (see the manual)
+    set -o nounset      # Disallow expansion of unset variables
+    set -o pipefail     # Use last non-zero exit code in a pipeline
+fi
 
 # os.sh
 #	Source: https://unix.stackexchange.com/questions/6345/how-can-i-get-distribution-name-and-version-number-in-a-simple-shell-script
@@ -61,5 +68,3 @@ i*86)
     # leave ARCH as-is
     ;;
 esac
-
-echo "$OS $VER, $BITS bits and $ARCH."
