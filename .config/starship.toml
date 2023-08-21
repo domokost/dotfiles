@@ -11,9 +11,9 @@ $git_status\
 """
 
 right_format =  """
-[](fg:#2e313f bg:#161821)\
-[$username@$hostname](bg:#2e313f fg:blue)\
-[](fg:#2e313f bg:#161821)\
+[](surface0)\
+[$username@$hostname](bg:surface0 fg:subtext1)\
+[](surface0)\
 """
 
 # Disable the blank line at the start of the prompt
@@ -22,8 +22,8 @@ right_format =  """
 # You can also replace your username with a neat symbol like  to save some space
 [username]
 show_always = true
-style_user = "bg:#2e313f fg:blue"
-style_root = "bg:#E27878"
+style_user = "bg:surface0 fg:subtext1"
+style_root = "bg:red"
 format = '[$user]($style)'
 
 [directory]
@@ -76,7 +76,7 @@ format = '[ ♥ $time ]($style)'
 ssh_only = false
 ssh_symbol = "  "
 format = "[$hostname$ssh_symbol]($style)"
-style = "bg:#2e313f fg:blue"
+style = "bg:surface0 fg:subtext1"
 trim_at = "."
 disabled = false
 
