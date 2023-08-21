@@ -1,15 +1,18 @@
+palette = "catppuccin_mocha"
+
 format = """
-[](#84a0c6)\
+[](surface0)\
 $directory\
-[](bg:#6b7089 fg:#84a0c6)\
+[](bg:surface1 fg:surface0)\
 $git_branch\
 $git_status\
-[ ](#6b7089)\
+[](bg:base fg:surface1)\
+[ ❯ ](bg:base fg:mauve)\
 """
 
 right_format =  """
 [](fg:#2e313f bg:#161821)\
-[$username@$hostname](bg:#2e313f fg:#6b7089)\
+[$username@$hostname](bg:#2e313f fg:blue)\
 [](fg:#2e313f bg:#161821)\
 """
 
@@ -19,17 +22,17 @@ right_format =  """
 # You can also replace your username with a neat symbol like  to save some space
 [username]
 show_always = true
-style_user = "bg:#2e313f fg:#6b7089"
+style_user = "bg:#2e313f fg:blue"
 style_root = "bg:#E27878"
 format = '[$user]($style)'
 
 [directory]
-style = "bg:#84a0c6 fg:#1E2132"
+style = "bg:surface0 fg:subtext1"
 format = "[$path]($style)"
 truncation_length = 3
 truncation_symbol = "…/"
 
-# Here is how you can shorten some long paths by text replacement
+# Here is how you can shorten some long paths by fg replacement
 # similar to mapped_locations in Oh My Posh:
 [directory.substitutions]
 "Documents" = ""
@@ -44,11 +47,11 @@ truncation_symbol = "…/"
 
 [git_branch]
 symbol = ""
-style = "bg:#6b7089 fg:#b4be82"
+style = "bg:surface1 fg:green"
 format = '[ $symbol $branch ]($style)'
 
 [git_status]
-#style = "bg:#6b7089"
+#style = "bg:surface1"
 #format = '[$all_status$ahead_behind]($style)'
 conflicted = "=${count}"
 ahead = "⇡${count}"
@@ -60,7 +63,7 @@ modified = "!${count}"
 staged = "+${count}"
 renamed = "+${count}"
 deleted = "✘${count}"
-style = "bg:#6b7089 fg:#e2a478"
+style = "bg:surface1 fg:yellow"
 format = "[$all_status$ahead_behind ]($style)"
 
 [time]
@@ -73,6 +76,36 @@ format = '[ ♥ $time ]($style)'
 ssh_only = false
 ssh_symbol = "  "
 format = "[$hostname$ssh_symbol]($style)"
-style = "bg:#2e313f fg:#6b7089"
+style = "bg:#2e313f fg:blue"
 trim_at = "."
 disabled = false
+
+[palettes.catppuccin_mocha]
+rosewater = "#f5e0dc"
+flamingo = "#f2cdcd"
+pink = "#f5c2e7"
+mauve = "#cba6f7"
+red = "#f38ba8"
+maroon = "#eba0ac"
+peach = "#fab387"
+yellow = "#f9e2af"
+green = "#a6e3a1"
+teal = "#94e2d5"
+sky = "#89dceb"
+sapphire = "#74c7ec"
+blue = "#89b4fa"
+lavender = "#b4befe"
+text = "#cdd6f4"
+subtext1 = "#bac2de"
+subtext0 = "#a6adc8"
+overlay2 = "#9399b2"
+overlay1 = "#7f849c"
+overlay0 = "#6c7086"
+surface2 = "#585b70"
+surface1 = "#45475a"
+surface0 = "#313244"
+base = "#1e1e2e"
+mantle = "#181825"
+crust = "#11111b"
+
+
