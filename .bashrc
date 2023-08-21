@@ -123,5 +123,5 @@ if ! shopt -oq posix; then
 fi
 eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 eval "$(starship init bash)"
-eval $(keychain --eval --quiet --agents ssh ~/.ssh/ed25519)
+#eval $(keychain --eval --quiet --agents ssh ~/.ssh/ed25519)
 alias ykman="$HOME/Downloads/yubikey-manager-qt.AppImage ykman"
