@@ -1,12 +1,12 @@
 return {
   -- add iceberg
-  { "https://codeberg.org/oahlen/iceberg.nvim" },
-
+  -- { "https://codeberg.org/oahlen/iceberg.nvim" },
+  { "catppuccin/nvim", name = "catppuccin", priority = 1000 },
   -- Configure LazyVim to load gruvbox
   {
     "LazyVim/LazyVim",
     opts = {
-      colorscheme = "iceberg",
+      colorscheme = "catppuccin-mocha",
     },
   },
 }

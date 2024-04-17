@@ -7,13 +7,11 @@ $directory\
 $git_branch\
 $git_status\
 [](bg:base fg:surface1)\
-[ ❯ ](bg:base fg:mauve)\
+[❯ ](bg:base fg:mauve)\
 """
 
 right_format =  """
-[](surface0)\
-[$username@$hostname](bg:surface0 fg:subtext1)\
-[](surface0)\
+$hostname\
 """
 
 # Disable the blank line at the start of the prompt
@@ -73,11 +71,11 @@ style = "bg:#33658A"
 format = '[ ♥ $time ]($style)'
 
 [hostname]
-ssh_only = false
+ssh_only = true 
 ssh_symbol = "  "
-format = "[$hostname$ssh_symbol]($style)"
-style = "bg:surface0 fg:subtext1"
-trim_at = "."
+format = "[](surface1)$hostname$ssh_symbol]($style)[](surface1)"
+style = "bg:surface1 fg:surface1)"
+#trim_at = "."
 disabled = false
 
 [palettes.catppuccin_mocha]
