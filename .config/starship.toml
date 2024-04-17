@@ -73,8 +73,8 @@ format = '[ ♥ $time ]($style)'
 [hostname]
 ssh_only = true 
 ssh_symbol = "  "
-format = "[](surface1)$hostname$ssh_symbol]($style)[](surface1)"
-style = "bg:surface1 fg:surface1)"
+style = "bg:surface1 fg:mauve"
+format = "[](surface1)[$hostname$ssh_symbol]($style)[](surface1)"
 #trim_at = "."
 disabled = false
 
